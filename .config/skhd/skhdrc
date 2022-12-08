@@ -1,0 +1,14 @@
+# directional focus
+cmd + alt - h : yabai -m window --focus west
+cmd + alt - l : yabai -m window --focus east
+cmd + alt - j : yabai -m window --focus south
+cmd + alt - k : yabai -m window --focus north
+
+# directional swap
+cmd + ctrl - h : yabai -m window --swap west
+cmd + ctrl - l : yabai -m window --swap east
+cmd + ctrl - j : yabai -m window --swap south
+cmd + ctrl - k : yabai -m window --swap north
+
+# focus recent
+cmd + alt - 0x2F : yabai -m window --focus recent
