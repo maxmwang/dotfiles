@@ -51,12 +51,11 @@ yabai -m config bottom_padding             5   # Bottom gap width (configured in
 yabai -m config left_padding               5   # left gap width (configured in variables)
 yabai -m config right_padding              5   # right gap width (configured in variables)
 yabai -m config window_gap                 8   # inside gap width (configured in variables)
-
-
+yabai -m config external_bar               main:30:0   # Add padding for main:display
 # Center unmanaged windows
 
 # Managed apps can't be moved
-yabai -m rule --add label="Finder" app="^Finder$" title="(Co(py|nnect)|Move|Info|Pref)" manage=off
+yabai -m rule --add label="Finder" app="^Finder$" title="(Co(py|nnect)|Move|Info|Finder Pref)" manage=off
 yabai -m rule --add label="Safari" app="^Safari$" title="^(General|(Tab|Password|Website|Extension)s|AutoFill|Se(arch|curity)|Privacy|Advanced)$" manage=off
 yabai -m rule --add label="System Preferences" app="^System Preferences$" title=".*" manage=off
 yabai -m rule --add label="Software Update" title="Software Update" manage=off
