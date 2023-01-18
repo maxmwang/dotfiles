@@ -82,7 +82,7 @@ sketchybar	--add	item weather q \
                         icon.font="$FONT_FACE:Bold:15.0" \
                     	update_freq=1800 \
                     	script="$PLUGIN_DIR/weather.sh" \
-            --subscribe weather system_woke
+            --subscribe weather system_woke mouse.clicked
 
 SPOTIFY_EVENT="com.spotify.client.PlaybackStateChanged"
 sketchybar  --add   event spotify_change $SPOTIFY_EVENT \

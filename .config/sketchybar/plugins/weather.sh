@@ -1,27 +1,48 @@
 #!/usr/bin/env zsh
 
-IP=$(curl -s https://ipinfo.io/ip)
-LOCATION_JSON=$(curl -s https://ipinfo.io/$IP/json)
+manual_update() {
+  sketchybar --set $NAME label="Updating..."
 
-LOCATION="$(echo $LOCATION_JSON | jq '.city' | tr -d '"')"
-REGION="$(echo $LOCATION_JSON | jq '.region' | tr -d '"')"
-COUNTRY="$(echo $LOCATION_JSON | jq '.country' | tr -d '"')"
+  IP=$(curl -s https://ipinfo.io/ip)
+  LOCATION_JSON=$(curl -s https://ipinfo.io/$IP/json)
 
-# Line below replaces spaces with +
-LOCATION_ESCAPED="${LOCATION// /+}+${REGION// /+}"
-WEATHER_JSON=$(curl -s "https://wttr.in/$LOCATION_ESCAPED?format=j1")
+  LOCATION="$(echo $LOCATION_JSON | jq '.city' | tr -d '"')"
+  REGION="$(echo $LOCATION_JSON | jq '.region' | tr -d '"')"
+  COUNTRY="$(echo $LOCATION_JSON | jq '.country' | tr -d '"')"
 
-# Fallback if empty
-if [ -z $WEATHER_JSON ]; then
+  # Line below replaces spaces with +
+  LOCATION_ESCAPED="${LOCATION// /+}+${REGION// /+}"
 
-  sketchybar --set $NAME label=$LOCATION
+  update
+}
 
-  return
-fi
+manual_update
 
-echo $WEATHER_JSON
+update() {
+  WEATHER_JSON=$(curl -s "https://wttr.in/$LOCATION_ESCAPED?format=j1")
 
-TEMPERATURE=$(echo $WEATHER_JSON | jq '.current_condition[0].temp_F' | tr -d '"')
-WEATHER_DESCRIPTION=$(echo $WEATHER_JSON | jq '.current_condition[0].weatherDesc[0].value' | tr -d '"' | sed 's/\(.\{25\}\).*/\1.../')
+  # Fallback if empty
+  if [ -z $WEATHER_JSON ]; then
 
-sketchybar --set $NAME label="$LOCATION  $TEMPERATURE宅 $WEATHER_DESCRIPTION"
+    sketchybar --set $NAME label=$LOCATION
+
+    return
+  fi
+
+  # echo $WEATHER_JSON
+
+  TEMPERATURE=$(echo $WEATHER_JSON | jq '.current_condition[0].temp_F' | tr -d '"')
+  WEATHER_DESCRIPTION=$(echo $WEATHER_JSON | jq '.current_condition[0].weatherDesc[0].value' | tr -d '"' | sed 's/\(.\{25\}\).*/\1.../')
+
+  sketchybar --set $NAME label="$LOCATION  $TEMPERATURE宅 $WEATHER_DESCRIPTION"
+
+}
+
+case "$SENDER" in
+  "mouse.clicked")
+    manual_update
+    ;;
+  *)
+    update
+    ;;
+esac
