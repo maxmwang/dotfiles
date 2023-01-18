@@ -1,8 +1,8 @@
 #!/usr/bin/env zsh
 
-echo $INFO
+VOLUME=$(osascript -e 'output volume of (get volume settings)')
 
-case ${INFO} in
+case ${VOLUME} in
   [6-9][0-9]|100)
     ICON=""
     ICON_PADDING_RIGHT=5
