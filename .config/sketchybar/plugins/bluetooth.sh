@@ -24,6 +24,7 @@ case "$SENDER" in
     else
       blueutil --connect $ID
     fi
+    update
     ;;
   *)
     update

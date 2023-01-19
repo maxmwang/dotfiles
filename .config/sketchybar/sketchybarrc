@@ -4,7 +4,8 @@ source "$HOME/.config/sketchybar/colors.sh"
 
 SKETCHYBAR_CONFIG="$HOME/.config/sketchybar"
 PLUGIN_DIR="$HOME/.config/sketchybar/plugins"
-FONT_FACE="SauceCodePro Nerd Font"
+FONT_FACE="SauceCodePro Nerd Font Mono"
+ICON_FONT="SauceCodePro Nerd Font"
 
 sketchybar	--bar \
                 height=32 \
@@ -24,7 +25,7 @@ sketchybar	--default \
                 background.corner_radius=5 \
                 background.height=24 \
                 icon.color=$ICON_COLOR \
-                icon.font="$FONT_FACE:Bold:17.0" \
+                icon.font="$ICON_FONT:Bold:17.0" \
                 icon.padding_left=8 \
                 icon.padding_right=7 \
                 label.font="$FONT_FACE:Bold:12.0" \
@@ -37,7 +38,7 @@ sketchybar	--add	item current_space left \
             --set	current_space \
                         background.color=$MAUVE \
                         background.padding_right=5 \
-                        icon.font="$FONT_FACE:Bold:13.0" \
+                        icon.font="$ICON_FONT:Bold:13.0" \
                         icon.color=$BASE \
                         label.drawing=off \
                         script="$PLUGIN_DIR/current_space.sh" \
@@ -57,7 +58,7 @@ sketchybar 	--add item front_app left \
                           icon= \
                           background.padding_left=-3 \
                           icon.y_offset=0 \
-                          icon.font="$FONT_FACE:Bold:19.0" \
+                          icon.font="$ICON_FONT:Bold:19.0" \
                           icon.color=$TEAL \
                           icon.padding_left=0 \
                           icon.padding_right=0 \
@@ -79,7 +80,7 @@ sketchybar	--add	item weather q \
                         background.padding_right=-7 \
                     	icon= \
                     	icon.color=$FLAMINGO \
-                        icon.font="$FONT_FACE:Bold:15.0" \
+                        icon.font="$ICON_FONT:Bold:15.0" \
                     	update_freq=1800 \
                     	script="$PLUGIN_DIR/weather.sh" \
             --subscribe weather system_woke mouse.clicked
@@ -90,7 +91,7 @@ sketchybar  --add   event spotify_change $SPOTIFY_EVENT \
             --set   spotify \
                         background.padding_left=-5 \
                         icon= \
-                    	icon.font="$FONT_FACE:Bold:20.0" \
+                    	icon.font="$ICON_FONT:Bold:20.0" \
                     	icon.y_offset=1 \
                         label.drawing=off \
                     	label.padding_left=2 \
@@ -109,7 +110,7 @@ sketchybar  --add   item battery right \
             --set   battery \
                         update_freq=1 \
                         script="$PLUGIN_DIR/battery.sh" \
-           --subscribe battery system_woke
+           --subscribe battery system_woke power_source_change
 
 BLUETOOTH_EVENT="com.apple.BluetoothDevicePairingChangedNotification"
 sketchybar  --add   event   bluetooth_change $BLUETOOTH_EVENT \
@@ -119,6 +120,7 @@ sketchybar  --add   event   bluetooth_change $BLUETOOTH_EVENT \
                         icon.padding_left=10 \
                         icon.padding_right=10 \
                         label.drawing=no \
+                        update_freq=1 \
                         script="$PLUGIN_DIR/bluetooth.sh" \
            --subscribe bluetooth bluetooth_change mouse.clicked
 

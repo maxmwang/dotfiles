@@ -9,11 +9,11 @@ case ${VOLUME} in
     ;;
   [1-5][0-9]|[1-9])
     ICON=""
-    ICON_PADDING_RIGHT=11
+    ICON_PADDING_RIGHT=10
     ;;
   *)
     ICON="ﱝ"
-    ICON_PADDING_RIGHT=9
+    ICON_PADDING_RIGHT=8
 esac
 
 sketchybar --set $NAME icon=$ICON icon.padding_right=$ICON_PADDING_RIGHT
