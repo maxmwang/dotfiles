@@ -14,5 +14,5 @@ cmd + ctrl - k : yabai -m window --swap north
 cmd + alt - 0x2F : yabai -m window --focus recent
 
 # stack focus
-cmd + alt - tab : yabai -m window --focus stack.next
-cmd + alt + shift - tab : yabai -m window --focus stack.prev
+cmd + alt - tab : cycle_focus_next
+cmd + alt + shift - tab : cycle_focus_prev
