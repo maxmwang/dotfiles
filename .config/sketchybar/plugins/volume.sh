@@ -11,7 +11,7 @@ case ${VOLUME} in
     ICON=""
     ICON_PADDING_RIGHT=10
     ;;
-  *)
+  0|*)
     ICON="ﱝ"
     ICON_PADDING_RIGHT=8
 esac

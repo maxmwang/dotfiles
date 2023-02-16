@@ -51,7 +51,23 @@ yabai -m config bottom_padding             5   # Bottom gap width (configured in
 yabai -m config left_padding               5   # left gap width (configured in variables)
 yabai -m config right_padding              5   # right gap width (configured in variables)
 yabai -m config window_gap                 8   # inside gap width (configured in variables)
-yabai -m config external_bar               main:30:0   # Add padding for main:display
+# yabai -m config external_bar               main:30:0   # Add padding for main:display
+
+# Configure individual spaces
+# Space 1: Spotify
+yabai -m space 1 --label spotify
+
+# Space 2: Browser
+yabai -m space 2 --label browser
+
+# ...
+
+# Space 6: discord/slack
+yabai -m space 6 --label comm
+yabai -m config --space 6 layout stack
+yabai -m config --space 6 left_padding 38
+
+
 # Center unmanaged windows
 
 # Managed apps can't be moved
@@ -61,6 +77,8 @@ yabai -m rule --add label="System Preferences" app="^System Preferences$" title=
 yabai -m rule --add label="Software Update" title="Software Update" manage=off
 yabai -m rule --add label="About This Mac" app="System Information" title="About This Mac" manage=off
 yabai -m rule --add label="Archive Utility" app="Archive Utility" title="Archive Utility" manage=off
+# yabai -m rule --add label="IntellJ IDEA" app="IntelliJ IDEA$" title="Preferences" manage=off
+# yabai -m rule --add app="IntelliJ IDEA" title="(Preferences|Project Structure|Choose Modules)" manage=off
 yabai -m rule --add app="Steam" manage=off
 
 events=('application_launched')
@@ -68,7 +86,6 @@ events=('application_launched')
 apps=('Archive Utility') 
 
 read -r -d '' action <<- 'EOF'
-  echo "action"
   window="$(yabai -m query --windows --window)"
   display="$(yabai -m query --displays --window)"
   coords="$(jq \

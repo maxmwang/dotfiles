@@ -5,7 +5,7 @@ source "$HOME/.config/sketchybar/colors.sh"
 # Max number of characters so it fits nicely to the right of the notch
 # MAY NOT WORK WITH NON-ENGLISH CHARACTERS
 
-MAX_LENGTH=35
+MAX_LENGTH=30
 # MAX_LENGTH=45
 
 # Logic starts here, do not modify

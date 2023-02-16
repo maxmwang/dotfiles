@@ -11,6 +11,8 @@ update() {
     exit 0
   fi
 
+  BORDER=0
+
   case ${PERCENTAGE} in
     [8-9][0-9]|100)
       ICON=""
@@ -37,17 +39,26 @@ update() {
   if [[ $PLUGGED_IN != "" ]]; then
     ICON=""
     ICON_COLOR=$RED
+    sketchybar --set $NAME icon=$ICON label="${PERCENTAGE}%" icon.color=${ICON_COLOR}
+    sleep 1
+    update
+    return
   elif [[ $CHARGING != "" ]]; then
     ICON=""
+    BORDER=1
   fi
 
-  sketchybar --set $NAME icon=$ICON label="${PERCENTAGE}%" icon.color=${ICON_COLOR}
+  sketchybar --set $NAME \
+                icon=$ICON \
+                icon.color=${ICON_COLOR} \
+                label="${PERCENTAGE}%" \
+                background.drawing=on \
+                background.border_color=$MAUVE \
+                background.border_width=$BORDER
 }
 
-update
-
 case "$SENDER" in
-  "power_source_change")
+  *)
     update
     ;;
 esac

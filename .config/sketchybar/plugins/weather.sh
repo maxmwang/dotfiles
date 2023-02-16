@@ -1,29 +1,21 @@
 #!/usr/bin/env zsh
 
-manual_update() {
+update() {
   sketchybar --set $NAME label="Updating..."
 
   IP=$(curl -s https://ipinfo.io/ip)
   LOCATION_JSON=$(curl -s https://ipinfo.io/$IP/json)
 
   LOCATION="$(echo $LOCATION_JSON | jq '.city' | tr -d '"')"
-  REGION="$(echo $LOCATION_JSON | jq '.region' | tr -d '"')"
-  COUNTRY="$(echo $LOCATION_JSON | jq '.country' | tr -d '"')"
+  COORDINATES="$(echo $LOCATION_JSON | jq '.loc' | tr -d '"')"
+  GRID_LINK="$(curl -s https://api.weather.gov/points/$COORDINATES | jq '.properties.forecastGridData' | tr -d '"')"
 
-  # Line below replaces spaces with +
-  LOCATION_ESCAPED="${LOCATION// /+}+${REGION// /+}"
+  # echo $GRID_LINK
 
-  update
-}
-
-manual_update
-
-update() {
-  WEATHER_JSON=$(curl -s "https://wttr.in/$LOCATION_ESCAPED?format=j1")
+  WEATHER_JSON="$(curl -s $GRID_LINK/forecast | jq '.properties.periods[0]')"
 
   # Fallback if empty
   if [ -z $WEATHER_JSON ]; then
-
     sketchybar --set $NAME label=$LOCATION
 
     return
@@ -31,18 +23,15 @@ update() {
 
   # echo $WEATHER_JSON
 
-  TEMPERATURE=$(echo $WEATHER_JSON | jq '.current_condition[0].temp_F' | tr -d '"')
-  WEATHER_DESCRIPTION=$(echo $WEATHER_JSON | jq '.current_condition[0].weatherDesc[0].value' | tr -d '"' | sed 's/\(.\{25\}\).*/\1.../')
+  TEMPERATURE=$(echo $WEATHER_JSON | jq '.temperature' | tr -d '"')
+  WEATHER_DESCRIPTION=$(echo $WEATHER_JSON | jq '.shortForecast' | tr -d '"' | sed 's/\(.\{25\}\).*/\1.../')
 
   sketchybar --set $NAME label="$LOCATION  $TEMPERATURE宅 $WEATHER_DESCRIPTION"
-
 }
 
 case "$SENDER" in
-  "mouse.clicked")
-    manual_update
-    ;;
   *)
+    echo "update"
     update
     ;;
 esac
