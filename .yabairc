@@ -9,7 +9,8 @@ export border_width="2"           # Determines the width of the active window's 
 export border_radius="11"         # radius of the active window's border                            (usage: 11/0/any number)
 export opacity_toggle="on"       # Detriments wether opacity based focus is on                     (usage: on/off)
 export layout="bsp"               # Layout of windows                                               (usage: bsp/float/stack)
-export animation_duration="0.2"   # Window animation duration                                       (usage: 0.0/0.3/0.5)
+export animation_duration="0.0"   # Window animation duration                                       (usage: 0.0/0.3/0.5)
+# animations cannot be on if using a stack layout. 
 export autoraise_toggle="on"      # turn autoraise on or off                                        (usage: on/off)
 
 ### Load scriptting adittion ##
@@ -63,12 +64,10 @@ yabai -m space 2 --label browser
 # ...
 
 # Space 6: discord/slack
-export zero_animation="0.0"
 yabai -m space 6 --label comm
 yabai -m config --space 6 layout stack
 yabai -m config --space 6 left_padding 38
 yabai -m config --space 6 window_opacity off
-yabai -m config --space 6 window_animation_duration $zero_animation
 
 # Center unmanaged windows
 
