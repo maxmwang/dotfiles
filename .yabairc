@@ -7,7 +7,7 @@ export mouse_mod="ctrl"            # key that when pressed, mouse can be used to
 export border_toggle="on"         # Determines wether borders for active windows are on             (usage: on/off)
 export border_width="2"           # Determines the width of the active window's border              (usage: 2/5/any number)
 export border_radius="11"         # radius of the active window's border                            (usage: 11/0/any number)
-export opacity_toggle="on"       # Detriments wether opacity based focus is on                     (usage: on/off)
+export opacity_toggle="off"       # Detriments wether opacity based focus is on                     (usage: on/off)
 export layout="bsp"               # Layout of windows                                               (usage: bsp/float/stack)
 export animation_duration="0.0"   # Window animation duration                                       (usage: 0.0/0.3/0.5)
 # animations cannot be on if using a stack layout. 
@@ -67,13 +67,13 @@ yabai -m space 2 --label browser
 yabai -m space 6 --label comm
 yabai -m config --space 6 layout stack
 yabai -m config --space 6 left_padding 38
-yabai -m config --space 6 window_opacity off
+# yabai -m config --space 6 window_opacity off
 
 # Center unmanaged windows
 
 # Managed apps can't be moved
 yabai -m rule --add label="Finder" app="^Finder$" title="(Co(py|nnect)|Move|Info|Finder Pref)" manage=off
-yabai -m rule --add label="Safari" app="^Safari$" title="^(General|(Tab|Password|Website|Extension)s|AutoFill|Se(arch|curity)|Privacy|Advanced)$" manage=off
+yabai -m rule --add label="Safari" app="^Safari$" title="^(General|(Tab|Password|Website|Extension)s|AutoFill|Se(arch|curity)|Privacy|Privacy Report)|Advanced)$" manage=off
 yabai -m rule --add label="System Preferences" app="^System Preferences$" title=".*" manage=off
 yabai -m rule --add label="Software Update" title="Software Update" manage=off
 yabai -m rule --add label="About This Mac" app="System Information" title="About This Mac" manage=off
