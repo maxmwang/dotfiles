@@ -9,6 +9,10 @@ case $INFO in
     ICON_PADDING_RIGHT=10
     ICON=
     ;;
+  "Orion")
+    ICON_PADDING_RIGHT=8
+    ICON=󰫢
+    ;;
   "kitty")
     ICON_PADDING_RIGHT=8
     ICON=
@@ -17,26 +21,14 @@ case $INFO in
     ICON_PADDING_RIGHT=6
     ICON=
     ;;
-  "Calendar")
-    ICON_PADDING_RIGHT=8
-    ICON=
-    ;;
   "Discord")
     ICON=ﭮ
     ;;
-  "FaceTime")
-    ICON_PADDING_RIGHT=11
-    ICON=
-    ;;
   "Finder")
-    ICON=
+    ICON=󰀶
     ;;
-  "Google Chrome")
-    ICON_PADDING_RIGHT=7
-    ICON=
-    ;;
-  "Messages")
-    ICON=
+  "Signal")
+    ICON=󰍡
     ;;
   "Notion")
     ICON_PADDING_RIGHT=12

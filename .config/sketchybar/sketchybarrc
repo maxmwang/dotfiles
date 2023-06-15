@@ -4,7 +4,7 @@ source "$HOME/.config/sketchybar/colors.sh"
 
 SKETCHYBAR_CONFIG="$HOME/.config/sketchybar"
 PLUGIN_DIR="$HOME/.config/sketchybar/plugins"
-FONT_FACE="SauceCodePro Nerd Font Mono"
+FONT_FACE="SauceCodePro Nerd Font"
 ICON_FONT="SauceCodePro Nerd Font"
 
 sketchybar	--bar \
@@ -136,6 +136,11 @@ sketchybar  --add   event   bluetooth_change $BLUETOOTH_EVENT \
 #                       label.drawing=no \
 #                       script="$PLUGIN_DIR/volume.sh" \
 #            --subscribe volume volume_change mouse.clicked
+
+# sketchybar  --add item place_holder left \
+#             --set place_holder \
+#                         script="$HOME/.config/sketchybar/notch_adjust.sh" \
+#             --subscribe place_holder display_change
 
 source "$HOME/.config/sketchybar/notch_adjust.sh"
 

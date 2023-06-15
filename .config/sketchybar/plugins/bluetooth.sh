@@ -9,11 +9,11 @@ BORDER=0
 
 update() {
   if [ $CONNECTED = "1" ]; then
-    ICON=""
+    ICON="󰂱"
     ICON_PADDING=8
     BORDER=1
   else
-    ICON=""
+    ICON=""
     ICON_PADDING=10
   fi
 
