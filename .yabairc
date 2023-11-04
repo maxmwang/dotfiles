@@ -46,13 +46,16 @@ yabai -m config window_border_width $border_width       # Set border width (conf
 yabai -m config active_window_border_color 0xFFcba6f7   # Set border color for the active window
 yabai -m config normal_window_border_color 0xFF3e4050   # set border color for other windows
 
+### don't uncomment, but run on first install. uncommenting will break borders upon restart
+# yabai -m window --toggle border
+
 ### Configure window gaps ###
 yabai -m config top_padding                3   # Top gap width (configured in variables)
 yabai -m config bottom_padding             5   # Bottom gap width (configured in variables)
 yabai -m config left_padding               5   # left gap width (configured in variables)
 yabai -m config right_padding              5   # right gap width (configured in variables)
 yabai -m config window_gap                 8   # inside gap width (configured in variables)
-# yabai -m config external_bar               main:30:0   # Add padding for main:display
+yabai -m config external_bar               main:30:0   # Add padding for main:display
 
 # Configure individual spaces
 # Space 1: Spotify
@@ -74,7 +77,8 @@ yabai -m config --space 6 left_padding 38
 # Managed apps can't be moved
 yabai -m rule --add label="Finder" app="^Finder$" title="(Co(py|nnect)|Move|Info|Finder Pref)" manage=off
 yabai -m rule --add label="Safari" app="^Safari$" title="^(General|(Tab|Password|Website|Extension)s|AutoFill|Se(arch|curity)|Privacy|Privacy Report)|Advanced)$" manage=off
-yabai -m rule --add label="System Preferences" app="^System Preferences$" title=".*" manage=off
+yabai -m rule --add label="Orion" app="^Orion$" title="^(General|Appearance|Browsing|Sync|Passwords|Privacy|Search|Websites|Advanced)$" manage=off
+yabai -m rule --add label="System Settings" app="^System Settings$" title=".*" manage=off
 yabai -m rule --add label="Software Update" title="Software Update" manage=off
 yabai -m rule --add label="About This Mac" app="System Information" title="About This Mac" manage=off
 yabai -m rule --add label="Archive Utility" app="Archive Utility" title="Archive Utility" manage=off
@@ -84,7 +88,7 @@ yabai -m rule --add app="Steam" manage=off
 
 events=('application_launched')
 # apps=('System Preferences' 'Archive Utility')
-apps=('Archive Utility') 
+apps=('System Settings', 'Archive Utility') 
 
 read -r -d '' action <<- 'EOF'
   window="$(yabai -m query --windows --window)"
@@ -106,3 +110,4 @@ done
 
 ### Notify when the yabai config finished loading ###
 echo "yabai configuration loaded.."
+
