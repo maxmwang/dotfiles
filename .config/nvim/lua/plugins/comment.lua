@@ -3,22 +3,19 @@ return {
     'numToStr/Comment.nvim',
     config = function()
       require('Comment').setup({
-        mappings = {
-          basic = false,
-          extra = false,
-        },
+        mappings = false,
       })
     end,
     keys = {
       {
         '<leader>/',
         function() require('Comment.api').toggle.linewise.current() end,
-        desc = 'Toggle comment',
+        desc = '[Comment] Comment current line',
       },
       {
         '<leader>/',
         '<ESC><cmd>lua require(\'Comment.api\').toggle.linewise(vim.fn.visualmode())<CR>',
-        desc = 'Toggle comment',
+        desc = '[Comment] Comment current selection',
         mode = { 'v' },
       },
     },

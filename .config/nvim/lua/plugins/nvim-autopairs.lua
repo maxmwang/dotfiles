@@ -7,5 +7,6 @@ return {
         check_ts = true,
       })
     end,
+    event = 'InsertEnter',
   },
 }

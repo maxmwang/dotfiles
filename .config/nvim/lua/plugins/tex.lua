@@ -1,28 +1,47 @@
-return {}
+-- local g = vim.g
 
 -- return {
 --   {
+--     'lervag/vimtex',
+--     config = function()
+--       g.tex_flavor = 'latex'
+--       g.vimtex_compiler_method = "latexmk"
+--       g.vimtex_compiler_latexmk = {
+--         callback = 1,
+--         continuous = 1,
+--         executable = "latexmk",
+--         options = {
+--           "-shell-escape",
+--           "-verbose",
+--           "-file-line-error",
+--           "-synctex=1",
+--           "-interaction=nonstopmode",
+--         },
+--       }
+--       g.vimtex_imaps_enabled = 0
+--       g.vimtex_view_method = 'zathura'
+--       g.vimtex_quickfix_mode = 0
+--     end,
+--     ft = {
+--       'tex',
+--     },
+--   },
+--   {
 --     'SirVer/ultisnips',
---     build = function()
---       vim.g.UltiSnipsExpandTrigger = '<tab>'
---       vim.g.UltiSnipsJumpForwardTrigger = '<tab>'
---       vim.g.UltiSnipsJumpBackwardTrigger = '<s-tab>'
+--     config = function()
+--       g.UltiSnipsExpandTrigger = '<tab>'
+--       g.UltiSnipsJumpForwardTrigger = '<tab>'
+--       g.UltiSnipsJumpBackwardTrigger = '<s-tab>'
 --     end,
 --   },
 --   {
---     'lervag/vimtex',
---     build = function()
---       vim.g.tex_flavor = 'latex'
---       vim.g.vimtex_view_method = 'zathura'
---       vim.g.vimtex_quickfix_mode = 0
---     end
---   },
---   {
 --     'KeitaNakamura/tex-conceal.vim',
---     build = function()
+--     config = function()
 --       vim.opt.conceallevel = 1
---       vim.g.tex_conceal = 'abdmg'
+--       g.tex_conceal = 'abdmg'
 --       vim.cmd('hi Conceal ctermbg=none')
 --     end,
 --   }
 -- }
+
+return {}

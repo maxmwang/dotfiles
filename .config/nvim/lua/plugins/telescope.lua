@@ -1,31 +1,45 @@
 return {
   {
-    'nvim-telescope/telescope-fzf-native.nvim',
-    build = 'make',
-  },
-  {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.1',
-    dependencies = 'nvim-lua/plenary.nvim',
-    build = function()
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope-fzf-native.nvim',
+    },
+    config = function()
       require('telescope').load_extension('fzf')
     end,
     keys = {
       {
         '<leader>ff',
-        '<cmd> Telescope find_files <CR>',
-        desc = 'Find files',
+        require('telescope.builtin').find_files,
+        desc = '[Telescope]: Find files',
       },
       {
         '<leader>fw',
-        '<cmd> Telescope live_grep <CR>',
-        desc = 'Find words',
+        require('telescope.builtin').live_grep,
+        desc = '[Telescope]: Find words',
       },
       {
         '<leader>fz',
-        '<cmd> Telescope current_buffer_fuzzy_find <CR>',
-        desc = 'Find in current buffer',
+        require('telescope.builtin').current_buffer_fuzzy_find,
+        desc = '[Telescope]: Find in file',
+      },
+      {
+        '<leader>fk',
+        require('telescope.builtin').keymaps,
+        desc = '[Telescope]: Find keymaps',
+      },
+      {
+        '<leader>ft',
+        require('telescope.builtin').pickers,
+        desc = '[Telescope]: Find pickers',
       },
     },
+  },
+  {
+    'nvim-telescope/telescope-fzf-native.nvim',
+    build = 'make',
+    lazy = true,
   },
 }

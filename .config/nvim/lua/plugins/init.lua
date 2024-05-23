@@ -1,5 +1,5 @@
 return {
-  -- util librarie
+  -- util libraries
   {
     'nvim-lua/plenary.nvim',
   },
@@ -19,11 +19,5 @@ return {
   -- git
   {
     'lewis6991/gitsigns.nvim',
-    config = function() require('gitsigns').setup() end,
-  },
-  -- catppuccino theme
-  {
-    'catppuccin/nvim',
-    config = function() vim.cmd.colorscheme('catppuccin-mocha') end,
   },
 }
